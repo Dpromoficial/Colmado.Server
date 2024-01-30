@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colmado.Server", "Colmado.Server\Colmado.Server.csproj", "{CEBC86BE-473E-47F9-B96C-29B2187AE431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colmado.Server", "Colmado.Server\Colmado.Server.csproj", "{CEBC86BE-473E-47F9-B96C-29B2187AE431}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
