@@ -1,5 +1,15 @@
-﻿<h3>Inicio</h3>
+﻿<div class="card-header " style="background-image: linear-gradient(180deg, rgb(0, 141, 255) 0%, #1EDADF 70%);border-radius:10px;">
+    <img src="/tienda-de-comestibles.png" style="width:5rem"/>
+    <label class="card-group"><b>PRODUCTO</b></label>
+    <label class="card-text">Inventario: @productos</label>
+</div>
+<div class="card-header mt-sm-5" style="background-image: linear-gradient(180deg, rgb(0, 141, 255) 0%, #1EDADF 70%); border-radius:10px;">
+    <img src="/paquete.png" style="width:5rem" />
+    <label class="card-group">VENTAS</label>
+    <label class="card-text">Ventas Hoy: @ventas</label>
+</div>
 
 @code {
-
+    int productos = 100;
+    int ventas = 10;
 }

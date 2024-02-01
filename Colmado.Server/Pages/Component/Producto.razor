@@ -1,5 +1,28 @@
-﻿<h3>Producto</h3>
+﻿<h3>PRODUCTOS</h3>
+
+<ul>
+    @foreach (var venta in productos)
+    {
+        <li class="card-header mt-3 border-dark" style="list-style:none; height:3rem; background-color:rgb(68,65,165); color:aliceblue; font-weight:bold; border-radius:10px">Nombre: @venta.NombreProducto - Inventario: @venta.inventario-UND</li>
+    }
+</ul>
 
 @code {
 
+    List<Productos> productos = new List<Productos>//listas de ventas
+    {
+        new Productos { NombreProducto = "SALSA 8oz", inventario = 10 },
+        new Productos { NombreProducto = "SOPITA 12/1", inventario = 89 },
+        new Productos { NombreProducto = "EVAPORADA 377", inventario = 58 },
+        new Productos { NombreProducto = "EVAPORADA RICA 368", inventario = 58 },
+        new Productos { NombreProducto = "AJO EN PASTA 15oz", inventario = 58 },
+        new Productos { NombreProducto = "LECHA EN POLVO 900g", inventario = 58 }
+    };
+
+
+    public class Productos//clase ventas
+    {
+        public string? NombreProducto { get; set; }
+        public int inventario { get; set; }
+    }
 }
