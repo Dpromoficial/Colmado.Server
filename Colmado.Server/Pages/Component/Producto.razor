@@ -1,0 +1,33 @@
+﻿<h3>PRODUCTOS</h3>
+<button class="btn-success">AGREGAR</button>
+<button class="btn-danger">ELIMINAR</button>
+<ul>
+    @foreach (var product in productos)
+    {
+        <li class="card-header mt-3 border-dark" style="list-style:none; height:3rem; background-color:rgb(68,65,165); color:aliceblue; font-weight:bold; border-radius:10px">
+            <img src="/derecha.png" style="width:32px"/>
+            <a> Id: @product.Id Nombre: @product.NombreProducto - Inventario: @product.inventario-UND</a>
+        </li>
+    }
+</ul>
+
+@code {
+
+    List<Productos> productos = new List<Productos>//listas de ventas
+    {
+        new Productos { Id = 1, NombreProducto = "SALSA 8oz", inventario = 10 },
+        new Productos { Id = 2, NombreProducto = "SOPITA 12/1", inventario = 89 },
+        new Productos { Id = 3, NombreProducto = "EVAPORADA 377", inventario = 58 },
+        new Productos { Id = 4, NombreProducto = "EVAPORADA RICA 368", inventario = 58 },
+        new Productos { Id = 5, NombreProducto = "AJO EN PASTA 15oz", inventario = 58 },
+        new Productos { Id = 6, NombreProducto = "LECHA EN POLVO 900g", inventario = 58 }
+    };
+
+
+    public class Productos//clase ventas
+    {
+        public int Id { get; set; }
+        public string? NombreProducto { get; set; }
+        public int inventario { get; set; }
+    }
+}

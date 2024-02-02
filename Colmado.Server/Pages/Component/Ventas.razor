@@ -1,0 +1,30 @@
+﻿<h3 >VENTAS</h3>
+
+<ul>
+    @foreach (var venta in ventas)
+    {
+        <li class="card-header mt-3 border-dark" style="list-style:none; height:3rem; background-color:rgb(68,155,65); color:aliceblue; font-weight:bold; border-radius:10px">
+            <img src="/derecha.png" style="width:32px" />
+            <a> Id: @venta.Id Nombre: @venta.NombreProducto - Monto: RD$ @venta.Monto</a>
+        </li>
+    }
+</ul>
+
+@code {
+    
+    List<Venta> ventas = new List<Venta>//listas de ventas
+    {
+        new Venta {Id = 12534, NombreProducto = "SALSA 8oz", Monto = 10 },
+        new Venta {Id = 34663, NombreProducto = "SOPITA 12/1", Monto = 89 },
+        new Venta {Id = 36344, NombreProducto = "EVAPORADA 377", Monto = 58 }
+    };
+
+    
+    public class Venta//clase ventas
+    {
+        public int Id { get; set; }
+        public string? NombreProducto { get; set; }
+        public decimal Monto { get; set; }
+    }
+}
+
