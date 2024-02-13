@@ -1,8 +1,13 @@
 using Colmado.Server.Data;
+using Colmado.Server.Database;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Inicializando las class Database
+Modelo.Products = new();
+Modelo.Vents = new List<VentasCls>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

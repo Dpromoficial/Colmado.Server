@@ -1,30 +1,138 @@
-﻿<h3 >VENTAS</h3>
+﻿@using Colmado.Server.Database;
+@using System.Collections
+<h3 >VENTAS</h3>
+<button @onclick="()=>band = !band" class=" btn btn-success">AGREGAR PRODUCTOS</button>
 
-<ul>
-    @foreach (var venta in ventas)
-    {
-        <li class="card-header mt-3 border-dark" style="list-style:none; height:3rem; background-color:rgb(68,155,65); color:aliceblue; font-weight:bold; border-radius:10px">
-            <img src="/derecha.png" style="width:32px" />
-            <a> Id: @venta.Id Nombre: @venta.NombreProducto - Monto: RD$ @venta.Monto</a>
-        </li>
-    }
-</ul>
+@if (band)
+{
+    <div class="form-control mt-5">
+        
+        <div class="mt-3">
+            <label class="form-label">EAN</label>
+            <select @bind="@listP.EAN_Producto" class="form-select">
+                <option selected>Seleccionar producto</option>
+                @foreach (var items in Modelo.Products)
+                {
+                    <option value="@items.EAN">@items.EAN</option>
+                }
+            </select>
+        </div>
+        <div class="mt-3">
+            <label class="form-label">CANTIDAD</label>
+            <input @bind="@listP.Cantidad" class="form-control" type="number" />
+        </div>
+        <div class="mt-3">
+            <label class="form-label">PRECIO</label>
+            @foreach (var item in Modelo.Products)
+            {
+                @if (listP.EAN_Producto == item.EAN)
+                {
+                    <input @bind="@item.Precio" class="form-control" type="number" />
+                    @(listP.Precio = item.Precio);
+                    @(listP.Nombre = item.Nombre);
+                }
+            }
+        </div>
+        <button @onclick="LimpiarProducto" class=" btn btn-danger mt-3">LIMPIAR</button>
+        <button @onclick="AgregarProducto" class=" btn btn-success mt-3">AGREGAR</button>
+    </div>
+
+    <div class="form-control mt-5">
+
+        <table class="table  mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">EAN</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">CANTIDA</th>
+                    <th scope="col">TOTAL ALTICULO</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (Modelo.ListProduct.Any())
+                {
+                    @foreach (var productList in Modelo.ListProduct)
+                    {
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@productList.EAN_Producto</td>
+                            <td>@productList.Nombre</td>
+                            <td>@productList.Precio</td>
+                            <td>@productList.Cantidad</td>
+                            <td>@productList.TotalArticulo</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <hr style="margin-top: 400px" />
+        <div class="mt-3">
+            <label class="form-label">ID VENTA</label>
+            <input @bind="@ventas.IdVenta" class="form-control" type="number" />
+        </div>
+         <button @onclick="Limpiar" class=" btn btn-danger mt-3">BORRAR</button>
+         <button @onclick="AgregarVenta" class=" btn btn-success mt-3">REALIZAR VENTA</button>
+    </div>
+    <table class="table  mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID VENTA</th>
+                <th scope="col">EAN</th>
+                <th scope="col">CANTIDAD</th>
+                <th scope="col">TOTAL ALTICULO</th>
+                <th scope="col">SUB TOTAL</th>
+                <th scope="col">DESCUENTO</th>
+                <th scope="col">ITBIS</th>
+                <th scope="col">TOTAL</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @if (Modelo.Vents.Any())
+            {
+                @foreach (var ventas in Modelo.Vents)
+                {
+                    
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>@ventas.EAN_Producto</td>
+                        @* <td>@ventas.</td>
+                        <td>@ventas.Precio</td>
+                        <td>@ventas.Stock</td> *@
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
 
 @code {
-    
-    List<Venta> ventas = new List<Venta>//listas de ventas
-    {
-        new Venta {Id = 12534, NombreProducto = "SALSA 8oz", Monto = 10 },
-        new Venta {Id = 34663, NombreProducto = "SOPITA 12/1", Monto = 89 },
-        new Venta {Id = 36344, NombreProducto = "EVAPORADA 377", Monto = 58 }
-    };
+    bool band = false;
+    public VentasCls ventas =  new();
+    public ListaProducto listP =  new();
 
-    
-    public class Venta//clase ventas
+
+    public void AgregarProducto()
     {
-        public int Id { get; set; }
-        public string? NombreProducto { get; set; }
-        public decimal Monto { get; set; }
+        Modelo.ListProduct.Add(listP);
+        listP = new();
+    }
+
+    public void AgregarVenta()
+    {
+        
+    }
+    public void Limpiar()
+    {
+        ventas = new();
+    }
+    public void LimpiarProducto()
+    {
+        listP = new();
     }
 }
 
